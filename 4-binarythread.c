@@ -140,10 +140,10 @@ ThreadTree* find_successor(ThreadTree* p) {
 
 void ThreadTreeInOrder(ThreadTree* root) {
 	ThreadTree* q = root;
-	while (q->left) q = q->left;  // 가장 왼쪽 노드로 이동
+	while (q->left) q = q->left; 
 	do {
 		printf("%d ", q->data);
-		q = find_successor(q);  // 후계자를 찾음
+		q = find_successor(q);  
 	} while (q);
 }
 

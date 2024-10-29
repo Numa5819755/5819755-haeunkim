@@ -64,7 +64,7 @@ int compare(const void* a, const void* b)
 	struct Edge* y = (struct Edge*)b;
 	return (x->weight - y->weight);
 }
-// 그래프에서 최대 정점을 찾아 정점 수 추정
+// 그래프에서 최대 정점을 찾아 정점 수 반환
 int find_vertex_count(GraphType* g) {
 	int max_vertex = 0;
 	for (int i = 0; i < g->n; i++) {

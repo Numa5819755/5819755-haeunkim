@@ -1,2 +1,2 @@
 #Prim MST{Reasult Image}
-![.](9-primmst.png)
+![.](9-primmst.PNG)

@@ -203,13 +203,14 @@ int choose(int distance[], int n, int found[])
 		}
 	return minpos;
 }
+//heap X 다익스트라 알고리즘 구
 void Dijkstra(GraphListType* g, int start)
 {
-	int distance[MAX_VERTICES];
-	int found[MAX_VERTICES];
-	int found_order[MAX_VERTICES];
-	int i, u;
-	int order_index = 0;
+	int distance[MAX_VERTICES]; //가중 배열
+	int found[MAX_VERTICES]; // 방문했는지 표시하는 배열
+	int found_order[MAX_VERTICES]; //방문한 정점을 순서대로 저장
+	int i, u;//반복문, 정점선택
+	int order_index = 0;//found_order인덱스
 
 	// 초기화
 	for (i = 1; i <= g->num_of_vertex; i++) {
@@ -219,21 +220,22 @@ void Dijkstra(GraphListType* g, int start)
 	distance[start] = 0;
 
 	for (i = 1; i <= g->num_of_vertex ; i++) {
-		u = choose(distance, g->num_of_vertex, found);
-		if (u == -1) break;
+		u = choose(distance, g->num_of_vertex, found); //방문할 정점
+		if (u == -1) break; //choose에서 반환되지 않았을 때, 종료
 		found[u] = TRUE;
 		found_order[order_index++] = u;
 
-		print_status(distance, found, g->num_of_vertex);
+		print_status(distance, found, g->num_of_vertex);//현재 상태 프린트
 
-		DListNode* current = g->adj_list[u].rlink;
+		DListNode* current = g->adj_list[u].rlink; //인접정점 거리
 		while (current != &(g->adj_list[u])) {
-			int v = current->vertex.number;
-			int weight = current->vertex.weight;
+			int v = current->vertex.number;//정점
+			int weight = current->vertex.weight;//가중치
+			//비교하여 인접정점에 대한 거리가 더 짧으면 갱신
 			if (!found[v] && distance[u] + weight < distance[v]) {
 				distance[v] = distance[u] + weight;
 			}
-			current = current->rlink;
+			current = current->rlink;//이동
 		}
 	}
 
@@ -290,20 +292,21 @@ heap_element delete_min_heap(HeapType* h) {
 
 //heapO Dijkstra_보너스
 void Dijkstra_heap(GraphListType* g, int start) {
-	int dist[MAX_VERTICES], prev[MAX_VERTICES], found[MAX_VERTICES];
-	HeapType* h;
-	DListNode* nptr;
-	int found_order[MAX_VERTICES];
-	int order_index = 0;
-
+	int dist[MAX_VERTICES], prev[MAX_VERTICES], found[MAX_VERTICES];// 거리, 이전 정점, 방문 여부 배열
+	HeapType* h;//min heap
+	DListNode* nptr;//인접리스트 탐색
+	int found_order[MAX_VERTICES];//방문순서 저장
+	int order_index = 0;//인덱스
+	//heap 생성
 	h = create_heap();
 	init_heap(h);
-
+	//초기화
 	for (int i = 0; i <= g->num_of_vertex; i++) {
 		dist[i] = INF;
 		found[i] = FALSE;
 		prev[i] = -1;
 	}
+	//처음 거리 0
 	dist[start] = 0;
 	insert_min_heap(h, (heap_element) { 0, start, start }); // 시작 정점을 힙에 추가
 

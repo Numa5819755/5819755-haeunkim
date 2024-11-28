@@ -3,7 +3,8 @@
 #include <time.h>
 #define SIZE 1000
 #define SWAP(x, y, t) ((t) = (x), (x) = (y), (y) = (t))
-
+ 
+//ë°°ì—´ ì¶œë ¥
 void printArray(int* array) {
 	printf("\nArray Sorting Result:\n");
 	for (int i = 0; i < 20; i++)
@@ -14,12 +15,14 @@ void printArray(int* array) {
 	printf("\n\n");
 }
 
-void generateRandomArray(int array[]) {
+//ë°°ì—´ ëœë¤ ì •ì˜
+void generateRandomArray(int array[]) { 
 	for (int i = 0; i < SIZE; i++) {
 		array[i] = rand() % 10000; // 0 ~ 9999
 	}
 }
 
+//quicksort íŒŒí‹°ì…˜
 int partition(int list[], int left, int right)
 {
 	int pivot, temp;
@@ -41,7 +44,7 @@ int partition(int list[], int left, int right)
 	SWAP(list[left], list[high], temp);
 	return high;
 }
-
+//í€µì •ë ¬ êµ¬í˜„
 QuickSort(int array[], int left, int right) {
 	if (left < right) {
 		int q = partition(array, left, right);
@@ -50,25 +53,26 @@ QuickSort(int array[], int left, int right) {
 	}
 }
 
+//ì´ì§„íƒìƒ‰ 1íšŒ countë°˜í™˜ 
 int search_binary2(int list[], int key, int low, int high)
 {
 	int middle;
 	int count = 0;
-	while (low <= high) { 				// ¾ÆÁ÷ ¼ıÀÚµéÀÌ ³²¾Æ ÀÖÀ¸¸é
+	while (low <= high) { 				// ì•„ì§ ìˆ«ìë“¤ì´ ë‚¨ì•„ ìˆìœ¼ë©´
 		middle = (low + high) / 2;
 		count++;
 		if (key == list[middle]) {
-			return count; 	// Å½»ö ¼º°ø
+			return count; 	// íƒìƒ‰ ì„±ê³µ
 		}
 		else {
 			count++;
-			if (key > list[middle]) low = middle + 1;// ¿ŞÂÊ ºÎºĞ¸®½ºÆ® Å½»ö
-			else high = middle - 1; 			// ¿À¸¥ÂÊ ºÎºĞ¸®½ºÆ® Å½»ö
+			if (key > list[middle]) low = middle + 1;// ì™¼ìª½ ë¶€ë¶„ë¦¬ìŠ¤íŠ¸ íƒìƒ‰
+			else high = middle - 1; 			// ì˜¤ë¥¸ìª½ ë¶€ë¶„ë¦¬ìŠ¤íŠ¸ íƒìƒ‰
 		}
 	}
-	return -1; 					// Å½»ö ½ÇÆĞ
+	return -1; 					// íƒìƒ‰ ì‹¤íŒ¨
 }
-
+//ì´ì§„íƒìƒ‰ count í‰ê·  ë°˜í™˜
 float getAverageBinarySearchCompareCount(int array[]){
 	int count = 0;
 	int target;
@@ -78,8 +82,8 @@ float getAverageBinarySearchCompareCount(int array[]){
 	}
 	return (float)count/1000;
 }
-
-int interpol_search(int list[], int key, int n)//º¸°£Å½»ö
+//ë³´ê°„íƒìƒ‰ 1íšŒ count ë°˜í™˜
+int interpol_search(int list[], int key, int n)//ë³´ê°„íƒìƒ‰
 {
 	int count = 0;
 	int low, high, j;
@@ -98,10 +102,10 @@ int interpol_search(int list[], int key, int n)//º¸°£Å½»ö
 		}
 	}
 	count++;
-	if (list[low] == key) return count;  // Å½»ö¼º°ø
-	else return -1;  // Å½»ö½ÇÆĞ
+	if (list[low] == key) return count;  // íƒìƒ‰ì„±ê³µ
+	else return -1;  // íƒìƒ‰ì‹¤íŒ¨
 }
-
+//ë³´ê°„íƒìƒ‰ í‰ê·  count ë°˜í™˜
 float getAverageInterpolationSearchComparecount(int array[]) {
 	int count = 0;
 	int target;

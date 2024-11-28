@@ -1,2 +1,2 @@
 # interpolation search {Result Image}
-![.](16-interpolationSearch)
+![.](./16-interpolationSearch.png)

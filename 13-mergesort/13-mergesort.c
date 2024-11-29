@@ -2,7 +2,7 @@
 #include<stdlib.h>
 #include<time.h>
 
-#define SIZE 100 //배열크기
+#define SIZE 100 
 int isFirst = 0;
 int comparisonCount = 0;
 int moveCount = 0;

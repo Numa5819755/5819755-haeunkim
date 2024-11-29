@@ -1,7 +1,8 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<time.h>
-#define SIZE 100
+
+#define SIZE 100 //배열크기
 int isFirst = 0;
 int comparisonCount = 0;
 int moveCount = 0;
@@ -25,11 +26,12 @@ void printArray(int array[], int start, int end) {
 	printf("\n");
 }
 
+//병합함수
 void merge(int list[], int left, int mid, int right) {
 	int i, j, k, l;
-	i = left;
-	j = mid + 1;
-	k = left;
+	i = left;//왼쪽 배열 시작
+	j = mid + 1;//오른쪽 배열 시작
+	k = left;//병합 후 저장 위치
 
 	// 분할 정렬된 list의 합병
 	while (i <= mid && j <= right) {
@@ -40,31 +42,31 @@ void merge(int list[], int left, int mid, int right) {
 		else {
 			sorted[k++] = list[j++];
 		}
-		moveCount++; // 이동 발생
+		moveCount++; 
 	}
 
-	// 남아 있는 레코드의 일괄 복사
+	// 왼쪽배열 복사
 	if (i > mid) {
 		for (l = j; l <= right; l++) {
 			sorted[k++] = list[l];
-			moveCount++; // 이동 발생
+			moveCount++; 
 		}
 	}
 	else {
 		for (l = i; l <= mid; l++) {
 			sorted[k++] = list[l];
-			moveCount++; // 이동 발생
+			moveCount++; 
 		}
 	}
 
-	// 배열 sorted[]의 리스트를 배열 list[]로 복사
+	// 오른쪽 배열 복사
 	for (l = left; l <= right; l++) {
 		list[l] = sorted[l];
-		moveCount++; // 이동 발생
+		moveCount++;
 	}
 
-	round++;
-	// 10번에 한 번씩 출력
+	round++;//병합 라운드 증가
+	//중간과정 출력
 	if (round % 10 == 0 && isFirst == 0) {
 
 		// 배열 처음부터 10개 출력
@@ -82,7 +84,7 @@ void merge(int list[], int left, int mid, int right) {
 		printf("\n\n");
 	}
 }
-
+//병합 정렬
 void doMargeSort(int list[], int left, int right) {
 	int width, i, mid, right_end;
 	int rounds = 0; // 과정 출력 카운터

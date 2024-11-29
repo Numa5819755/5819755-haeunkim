@@ -4,6 +4,8 @@
 합병 정렬은 O(nlogn)의 시간 복잡도를 가짐으로 비교하면 퀵 정렬과 시간 복잡도는 동일하지만, 퀵 정렬은 제자리 정렬이 가능해 공간적 측면에서 더 유리하고 퀵 정렬 과정에서 한 단계에 이동하는 데이터가 더 많아 시간적 부분에서도 더 유리하다.
 
 #bonus quicksort {Result Image}
+
 ![.](./14-quicksort.png)
 #quicksort {Code Image}
+
 ![.](./14-code.png)

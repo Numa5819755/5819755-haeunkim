@@ -9,6 +9,8 @@ int comparisonCount = 0;
 int moveCount = 0;
 int rounds = 0;
 int isFirst = 0;
+
+//stack 구조체체
 typedef struct {
     int top;
     int capacity;
@@ -52,19 +54,19 @@ int pop(Stack* stack) {
     }
     return stack->data[stack->top--];
 }
-
+//배열 난수로 정의
 void generateRandomArray(int* data) {
     for (int i = 0; i < SIZE; i++)
         data[i] = rand() % 1000;
 }
-
+//배열 출력
 void printArray(int* data, int n) {
     for (int i = 0; i < n; i++) {
         printf("%d ", data[i]);
     }
     printf("\n");
 }
-
+//파티션 분할
 int partition(int list[], int left, int right) {
     int pivot = list[left];
     int temp = 0;
@@ -93,7 +95,7 @@ int partition(int list[], int left, int right) {
 
     return high;
 }
-
+//퀵 정렬렬
 void doQuickSort(int list[], int left, int right) {
     Stack* stack = createStack(SIZE);
 

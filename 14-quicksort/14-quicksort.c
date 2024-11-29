@@ -72,7 +72,7 @@ int partition(int list[], int left, int right) {
     int temp = 0;
     int low = left;
     int high = right + 1;
-
+    rounds++;
     do {
         do {
             low++;
@@ -93,9 +93,18 @@ int partition(int list[], int left, int right) {
     SWAP(list[left], list[high], temp);
     moveCount += 3;
 
+    // 10번마다 40~60 위치 출력
+    if (rounds % 10 == 0 && isFirst == 0) {
+        for (int i = 40; i < 60; i++) {
+            printf("%d ", list[i]);
+        }
+        printf("\n\n");
+    }
+
     return high;
 }
-//퀵 정렬렬
+
+//퀵 정렬
 void doQuickSort(int list[], int left, int right) {
     Stack* stack = createStack(SIZE);
 
@@ -108,15 +117,6 @@ void doQuickSort(int list[], int left, int right) {
         int left = pop(stack);
 
         int pivot = partition(list, left, right);
-
-        // 10번마다 40~60 위치 출력
-        if (rounds % 10 == 0 && isFirst==0) {
-            for (int i = 40; i < 60; i++) {
-                printf("%d ", list[i]);
-            }
-            printf("\n\n");
-        }
-        rounds++;
 
         if (pivot - 1 > left) {
             push(stack, left);
